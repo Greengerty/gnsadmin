@@ -1,0 +1,11 @@
+#header .container nav>ul>li>ul{
+	display: none; 
+	list-style-type: none;
+	background: rgba(0,0,0,.8);
+	position: absolute;
+	top: 30px;
+	left: -23%;
+	padding: 0;
+	min-width: 150px;
+	text-align: center;
+}
