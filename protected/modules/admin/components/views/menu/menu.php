@@ -15,7 +15,13 @@
 					$submenu = '';
 					if(isset($menuItem['parent'])){
 						$submenu .= '<ul class="sub" style="display: none;">';
-						foreach($menuItem['parent'] as $subMenu){
+						
+						foreach ($menuItem['parent'] as $subMenu)
+						{
+
+				 			if ($parametrs['action'] == $subMenu['url'])
+				 				$class = 'active';							
+
 							$submenu .= '<li>
 											<a href="' . Yii::app()->params['adminUrl'] . '/' . $subMenu['url'] . '/">
 												<i class="fa fa-' . $subMenu['icon'] . '"></i>
@@ -23,6 +29,7 @@
 											</a>
 										</li>';
 						}
+
 						$submenu .= '</ul>';
 					}
 
