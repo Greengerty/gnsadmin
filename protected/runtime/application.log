@@ -10204,3 +10204,80 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/images/favicon.png
 ---
+2014/11/21 14:36:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/
+---
+2014/11/21 14:36:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---
+2014/11/21 14:36:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---
+2014/11/21 14:36:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---
+2014/11/21 14:39:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---
+2014/11/21 14:40:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---
+2014/11/21 14:41:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "widget.html".' in C:\xampp\htdocs\gnsyii.local\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\gnsyii.local\framework\web\CController.php(270): CController->missingAction('widget.html')
+#1 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(282): CController->run('widget.html')
+#2 C:\xampp\htdocs\gnsyii.local\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/teachers/...')
+#3 C:\xampp\htdocs\gnsyii.local\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\gnsyii.local\public\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/admin/teachers/widget.html
+HTTP_REFERER=http://gnsyii.local/admin/teachers/widget.html
+---

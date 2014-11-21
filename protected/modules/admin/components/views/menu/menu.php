@@ -11,14 +11,31 @@
 		 			if($parametrs['action'] == $menuItem['url'])
 		 				$class = 'active';
 
-		 			echo '
-						<li>
-							<a href="' . Yii::app()->params['adminUrl'] . '/' . $menuItem['url'] . '/" class="'.$class.'">
-								<i class="fa fa-' . $menuItem['icon'] . '"></i>
-								<span>' . Yii::t('adminModule.app',$menuItem['name']) . '</span>
-							</a>
-						</li>
-						';
+					/*Sub Menu generating first*/
+					$submenu = '';
+					if(isset($menuItem['parent'])){
+						$submenu .= '<ul class="sub" style="display: none;">';
+						foreach($menuItem['parent'] as $subMenu){
+							$submenu .= '<li>
+											<a href="' . Yii::app()->params['adminUrl'] . '/' . $subMenu['url'] . '/">
+												<i class="fa fa-' . $subMenu['icon'] . '"></i>
+												'.Yii::t('adminModule.app',$subMenu['name']).'
+											</a>
+										</li>';
+						}
+						$submenu .= '</ul>';
+					}
+
+		 			echo '<li class="sub-menu dcjq-parent-li">';
+		 			if($submenu == '') 
+		 				echo '	<a href="' . Yii::app()->params['adminUrl'] . '/' . $menuItem['url'] . '/" class="'.$class.'">';
+		 			else
+		 				echo '	<a href="javascript:;" class="dcjq-parent">';
+					echo '		<i class="fa fa-' . $menuItem['icon'] . '"></i>';
+					echo '  	<span>' . Yii::t('adminModule.app',$menuItem['name']) . '</span>';
+					echo '	</a>';
+					echo $submenu;
+					echo '</li>';
 		 		}
 		 	}
 		?>

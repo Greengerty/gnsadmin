@@ -22,6 +22,36 @@ return array(
 	        'auth' => 'user',
 	        'visible' => true,
 	    ),	    
+	    30 => array(
+	        'name' => 'Блог',
+	        'icon' => 'edit',
+	        'url' => '#',
+	        'auth' => 'user',
+	        'visible' => true,
+	        'parent' => array(
+				    0 => array(
+				        'name' => 'Новости',
+				        'icon' => 'bullhorn',
+				        'url' => '#',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+				    10 => array(
+				        'name' => 'Анонсы',
+				        'icon' => 'font',
+				        'url' => '#',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+				    20 => array(
+				        'name' => 'Прес-релизы',
+				        'icon' => 'file-text',
+				        'url' => '#',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+	        )
+	    ),	    
 	)
 );
 ?>

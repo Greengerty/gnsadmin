@@ -19,6 +19,8 @@
 	<script src="/themes/admin/js/jquery.nicescroll.js"></script>
 	<!--common script init for all pages-->
 	<script src="/themes/admin/js/scripts.js"></script>
+	<script src="/themes/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+	
 	<!-- js & css for tree styles -->
 	<link rel="stylesheet" type="text/css" href="/themes/admin/js/fuelux/css/tree-style.css">
 	<script src="/themes/admin/js/fuelux/js/tree.min.js"></script>	

@@ -30,28 +30,29 @@
 
 <script>
 var treeDirOpen = [];
-var TreeView = function () 
-{
-    return 
-    {
-        //main function to initiate the module
+var TreeView = function () {
+
+    return {
         init: function () 
         {
+
             var DataSourceTree = function (options) {
                 this._data  = options.data;
                 this._delay = options.delay;
             };
 
-            DataSourceTree.prototype = {
-                data: function (options, callback) {
+            DataSourceTree.prototype = 
+            {
+                data: function (options, callback) 
+                {
                     var self = this;
 
-                    setTimeout(function () 
+                    setTimeout( function () 
                     {
-                    	if(options.additionalParameters == undefined){
+                    	if(options.additionalParameters == undefined) {
                     		var data = $.extend(true, [], treeDataSource[0]._data);
                     	}
-                    	else{
+                    	else {
                     		var data = $.extend(true, [], treeDataSource[options.additionalParameters.id]._data);
                     	}                       
 
@@ -89,13 +90,12 @@ var TreeView = function ()
         						echo '{ name: \'<i class="fa fa-file-text-o"></i> <a href="#" onclick="edit('.$idItem.')">'.$item.'</a> <div class="tree-actions"><i class="fa fa-circle '.$status.'" onclick="treeonoff(this,'.$idItem.')"></i><i class="fa fa-edit" onclick="edit('.$idItem.')"></i><i class="fa fa-trash-o" onclick="del('.$idItem.')"></i></div>\', type: \'item\', additionalParameters: { id: \''.$idItem.'\' } },';
         		        };
 
-        		        echo '
-        		                ],
+        		        echo '  ],
         		                delay: 0
         			        });
         				';
         			}
-                    echo 'treeDirOpen = ['.implode(',', $folders).']';
+                    echo 'treeDirOpen = ['.implode(',', $folders).'];';
                 /* END PHP GENERATED JS FOR TREE */
         		?>
 			
