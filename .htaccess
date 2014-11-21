@@ -7,3 +7,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # иначе отправлять запрос на файл index.php
 RewriteRule . index.php	
+
+#no chance to get .git folder
+RewriteRule \.git - [F,L]
