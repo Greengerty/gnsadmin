@@ -26,6 +26,8 @@ class Pages extends CActiveRecord
             array('body', 'safe'),
             array('status', 'safe'),
             array('reiting', 'numerical'),
+            array('url', 'unique', 'message'=>'Страница с таким адресом уже существует.'),
+            array('url', 'match', 'pattern' => '/^[0-9A-Za-z-_]+$/', 'message' => 'Поле содержит недопустимые символы.'),
             array('name, url, controller, meta_title, meta_description, meta_keywords', 'length', 'max'=>255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

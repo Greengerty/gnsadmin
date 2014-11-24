@@ -13,7 +13,8 @@
 
 					/*Sub Menu generating first*/
 					$submenu = '';
-					if(isset($menuItem['parent'])){
+					if(isset($menuItem['parent']))
+					{
 						$submenu .= '<ul class="sub" style="display: none;">';
 						
 						foreach ($menuItem['parent'] as $subMenu)
@@ -33,6 +34,7 @@
 						$submenu .= '</ul>';
 					}
 
+					/*Menu generating*/
 		 			echo '<li class="sub-menu dcjq-parent-li">';
 		 			if($submenu == '') 
 		 				echo '	<a href="' . Yii::app()->params['adminUrl'] . '/' . $menuItem['url'] . '/" class="'.$class.'">';

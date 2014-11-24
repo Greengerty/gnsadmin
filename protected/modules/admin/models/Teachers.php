@@ -26,12 +26,13 @@ class Teachers extends CActiveRecord
             array('name', 'required'),
             array('name, position', 'length', 'max'=>255),
             array('status, body, tags, position', 'safe'),
-            array('img', 'file', 
-                  'types'=>'jpg, gif, png', 
-                  'allowEmpty'=>true,
-                  'maxSize'=>1024 * 1024 * 1, //1 MB
-                  'tooLarge'=>Yii::t('adminModule.app','Файл весит больше 2 MB. Пожалуйста, загрузите файл меньшего размера.'),
-                  ),
+            array('img', 'imageValidate',
+                    'types'=>array('jpg', 'jpeg', 'gif', 'png'), 
+                    'mimeTypes' => array('image/jpeg', 'image/png', 'image/gif'),
+                    'maxWidth'=>800,
+                    'maxHeight'=>800,
+                    'postFieldName'=>'image', // Form field name
+                 ),
             // The following rule is used by search().
             array('id, name, tags, position', 'safe', 'on'=>'search'),
         );
@@ -102,19 +103,41 @@ class Teachers extends CActiveRecord
         return Yii::app()->db->tablePrefix.'teachers';
     }
 
-    public function delOldImg($model){
-        if ($model->img != null)
+    /**
+     * delete Image from HDD
+     */    
+    public function delOldImgFile($image = null){
+        if(is_file(Yii::app()->basePath . '/../uploads/' . strtolower(get_class($this)) . '/' . $image))
+            unlink(Yii::app()->basePath . '/../uploads/' . strtolower(get_class($this)) . '/' . $image);
+        return true;
+    }
+
+    /**
+     * validate Image on upload
+     */    
+    public function imageValidate($attribute, $params)
+    {
+        if (isset($_FILES[get_class($this)]['tmp_name'][$params['postFieldName']]) 
+            && 
+            $_FILES[get_class($this)]['tmp_name'][$params['postFieldName']] != '')
         {
-            try
+            $imagehw = getimagesize($_FILES[get_class($this)]['tmp_name']['image']);
+            $imageWidth  = $imagehw[0];
+            $imageHeight = $imagehw[1];
+            $imageMType  = $imagehw['mime'];
+
+            if (in_array($imageMType, $params['mimeTypes']))
             {
-                unlink(Yii::app()->basePath . '/../uploads/' . strtolower(get_class($this)) . '/' . $model->img);
-                $model->img = null;
+                if($imageWidth < $params['maxWidth'] || $imageHeight < $params['maxHeight'] )
+                    return true;
+                else
+                    $this->addError($attribute, 'Размер больше '.$params['maxWidth'].'px * '.$params['maxHeight'].'px');
             }
-            catch (Exception $e) {
-                return false;
-            }        
+            else
+                $this->addError($attribute, 'Неверный формат файла');
+
+            return false;
         }
-        return $model;
     }
 
     // protected function beforeSave() 

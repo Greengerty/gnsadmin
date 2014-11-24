@@ -111,24 +111,34 @@ class TeachersController extends AdminController
 		if (isset($_POST[$this->modelName]))
 		{
 			$model->attributes = $_POST[$this->modelName];
+			$oldImageName = $model->img;
 
 			/* deleting img */
-			if(isset($_POST['delimg']) && $_POST['delimg'] == 1){
-				$model = $model->delOldImg($model);
-			}
-			/* adding new img */
-			$image = NULL;
-			if ($_FILES[$this->modelName]['name']['image'] != ''){
-				$model = $model->delOldImg($model);
-				$rnd = date('Ymd') . '_' . rand(0, 1000);
-				$image = CUploadedFile::getInstance($model,'image');
-				$model->img = $rnd.'_'.$image->getName();
+			if (isset($_POST['delimg']) && $_POST['delimg'] == 1)
+			{
+				$model->delOldImgFile($oldImageName);
+				$model->img = '';
 			}
 
-			try{
-				if ($model->save()){
+			/* new img name */
+			$image = NULL;
+			if ($_FILES[$this->modelName]['name']['image'] != '')
+			{
+				$rnd = date('Ymd') . '_' . rand(0, 1000);
+				$image = CUploadedFile::getInstance($model,'image');
+				$newImageName = $rnd.'_'.$image->getName();
+			}
+
+			try {
+				if ($model->save())
+				{
 					/* saving img */
-					if($image instanceof CUploadedFile){
+					if ($image instanceof CUploadedFile)
+					{
+						$model->delOldImgFile($oldImageName);
+						$model->img = $newImageName;
+						$model->save();
+
 						$path = Yii::getPathOfAlias('webroot').'/uploads/'.strtolower($this->modelName).'/'.$rnd.'_'.$image->getName();
 	                	$image->saveAs($path);
 	                }
@@ -136,7 +146,7 @@ class TeachersController extends AdminController
 					$this->redirect(array('index'));
 				}
 			}
-			catch (Exception $e){
+			catch (Exception $e) {
 				throw new CHttpException(405,'Sorry, something wrong with request.');
 			}
 		}
