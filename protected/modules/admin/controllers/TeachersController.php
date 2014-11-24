@@ -153,7 +153,7 @@ class TeachersController extends AdminController
 
 		/*image size*/
 		$size = array();
-		if(is_file(Yii::getPathOfAlias('webroot').'/uploads/'.strtolower($this->modelName).'/'.$model->img))
+		if($model->img != '' && is_file(Yii::getPathOfAlias('webroot').'/uploads/'.strtolower($this->modelName).'/'.$model->img))
 			$size = getimagesize(Yii::getPathOfAlias('webroot').'/uploads/'.strtolower($this->modelName).'/'.$model->img);
 
 		$this->render('edit', array('model'=>$model, 'size'=>$size));
