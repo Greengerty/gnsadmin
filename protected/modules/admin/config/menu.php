@@ -32,7 +32,7 @@ return array(
 				    0 => array(
 				        'name' => 'Новости',
 				        'icon' => 'bullhorn',
-				        'url' => '#',
+				        'url' => 'news',
 				        'auth' => 'user',
 				        'visible' => true,
 				    ),

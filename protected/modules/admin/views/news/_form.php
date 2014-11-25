@@ -4,6 +4,7 @@
 <script src="/themes/admin/js/jcrop/js/jquery.Jcrop.min.js"></script>
 <script src="/themes/admin/js/imageCropCustom.js"></script> <!-- my custom script -->
 <link rel="stylesheet" href="/themes/admin/js/jcrop/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="/themes/admin/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'items-form',
@@ -17,19 +18,29 @@
 			<?php echo $form->labelEx($model,'name', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
 			<div class="col-lg-10">
                 <?php echo $form->textField($model,'name',
-                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Имя'), 'maxlength'=>255)
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Название'), 'maxlength'=>255)
                 );?>				
 				<p><?php echo $form->error($model,'name',array('class'=>'text-danger')); ?></p>
 			</div>
 		</div>
 
         <div class="form-group">
-            <?php echo $form->labelEx($model,'position', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <?php echo $form->labelEx($model,'alias', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
-                <?php echo $form->textField($model,'position',
-                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Должность'), 'maxlength'=>255)
+                <?php echo $form->textField($model,'alias',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Алиас'), 'maxlength'=>255)
                 );?>                
-                <p><?php echo $form->error($model,'position',array('class'=>'text-danger')); ?></p>
+                <p><?php echo $form->error($model,'alias',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'sdate', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'sdate',
+                      array('class'=>'form-control form-control-inline default-date-picker', 'placeholder'=>Yii::t('adminModule.app','Дата'), 'maxlength'=>255, 'readonly' => 'readonly')
+                );?>                
+                <p><?php echo $form->error($model,'sdate',array('class'=>'text-danger')); ?></p>
             </div>
         </div>
 
@@ -95,6 +106,15 @@
 <?php $this->endWidget(); ?>
 
 <script>
-    TagsField = 'Teachers_tags';
-    CKEDITOR.replace( 'Teachers_body' );
+    TagsField = 'News_tags';
+    CKEDITOR.replace( 'News_body' );
+
+    $(document).ready(function()
+    {
+        $("#News_alias").click(function()
+        {
+            if($("#News_alias").val() == '')
+                $("#News_alias").val( urlRusLat($("#News_name").val()) );
+        });
+    });
 </script>

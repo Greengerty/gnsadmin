@@ -51,7 +51,8 @@ function saveCrop(module, src, objName){
         $("#"+objName).attr("src", src+'?'+d.getTime());
         $('#'+objName).css('height', '150'); 
         $('#'+objName).css('width', 'auto'); 
-        $('#imgCropOption' + currentImage).hide();        
+        $('#imgCropOption' + currentImage).hide();     
+        $('#imgCropCancel' + currentImage).hide();
         $('#imgOptions' + currentImage).show();
     });    
 }

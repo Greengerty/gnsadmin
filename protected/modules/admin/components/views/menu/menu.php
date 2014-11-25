@@ -20,10 +20,13 @@
 						foreach ($menuItem['parent'] as $subMenu)
 						{
 
-				 			if ($parametrs['action'] == $subMenu['url'])
-				 				$class = 'active';							
+							$subclass = '';
+				 			if ($parametrs['action'] == $subMenu['url']){
+				 				$subclass = 'active';
+				 				$class = 'active';
+				 			}
 
-							$submenu .= '<li>
+							$submenu .= '<li class="'.$subclass.'">
 											<a href="' . Yii::app()->params['adminUrl'] . '/' . $subMenu['url'] . '/">
 												<i class="fa fa-' . $subMenu['icon'] . '"></i>
 												'.Yii::t('adminModule.app',$subMenu['name']).'
@@ -39,7 +42,7 @@
 		 			if($submenu == '') 
 		 				echo '	<a href="' . Yii::app()->params['adminUrl'] . '/' . $menuItem['url'] . '/" class="'.$class.'">';
 		 			else
-		 				echo '	<a href="javascript:;" class="dcjq-parent">';
+		 				echo '	<a href="javascript:;" class="dcjq-parent '.$class.'">';
 					echo '		<i class="fa fa-' . $menuItem['icon'] . '"></i>';
 					echo '  	<span>' . Yii::t('adminModule.app',$menuItem['name']) . '</span>';
 					echo '	</a>';

@@ -82,12 +82,10 @@ class m141112_112242_install_admin_module extends CDbMigration
 
 	public function down()
 	{
-		// echo "m141112_112242_install_admin_module does not support migration down.\n";
-
 		$this->dropTable('gns_admins');
 		$this->dropTable('gns_pages');
 		$this->dropTable('gns_teachers');
-		return false;
+		return true;
 	}
 
 	/*

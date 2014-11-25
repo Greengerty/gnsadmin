@@ -12,8 +12,11 @@ function onChangeTag(input,tag) {
 }
 
 $(function() {
+    $('.default-date-picker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
 
-    $('#Teachers_tags').tagsInput({
+    $('#'+TagsField).tagsInput({
         width: 'auto',
         onChange: function(elem, elem_tags)
         {
