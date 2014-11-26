@@ -1,14 +1,8 @@
 <?php
 class AdminsController extends AdminController
 {
-	private $modelName = 'Admins';
+	protected $modelName = 'Admins';
 
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
 
 	/**
 	 * Render list of module items.
@@ -78,9 +72,9 @@ class AdminsController extends AdminController
 	}
 
 	/**
-	 * Render form.
+	 * Render form. No image upload support
 	*/
-	private function renderForm($model)
+	protected function renderForm($model)
 	{
 		if (!Yii::app()->user->checkAccess('root'))
 			$this->accessError();
@@ -99,23 +93,5 @@ class AdminsController extends AdminController
 
 		$this->render('edit', array('model'=>$model));
 	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return $this->modelName the loaded model
-	 * @throws CHttpException
-	 */
-	private function loadModel($id)
-	{
-		$model = new $this->modelName();
-		$model = $model::model()->findByPk($id);
-		if ($model === null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		else
-			$model->isNewRecord = false;
-		return $model;
-	}
-
+	
 }

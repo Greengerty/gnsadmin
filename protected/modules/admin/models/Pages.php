@@ -1,17 +1,5 @@
 <?php
-/**
- * Модель Pages
- *
- * @property integer $id
- * @property integer $parent
- * @property string $name
- * @property string $url
- * @property string $body
- * @property string $controller
- * @property string $meta_title
- * @property string $meta_description
- * @property string $meta_keywords
- */
+
 class Pages extends CActiveRecord 
 {
     /**
