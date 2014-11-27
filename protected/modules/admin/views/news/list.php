@@ -20,6 +20,13 @@
 			'sdate',
 			'tags',
 		),
+		'joinColumns'=>array(
+			'category' => array(
+				'model' => 'NewsCategory',
+				'joinField' => 'id',
+				'neededField' => 'name',
+			)
+		),
 		'model'=>$model,	
 	));
 	$this->endWidget(); 

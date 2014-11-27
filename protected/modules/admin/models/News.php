@@ -18,7 +18,7 @@ class News extends CActiveRecord
         return array(
             array('name, alias', 'required'),
             array('name, alias, author', 'length', 'max'=>255),
-            array('status, body, tags, alias, sdate, popular, media, intro', 'safe'),
+            array('category, status, body, tags, alias, sdate, popular, media, intro', 'safe'),
             array('img', 'imageValidate',
                     'types'=>array('jpg', 'jpeg', 'gif', 'png'), 
                     'mimeTypes' => array('image/jpeg', 'image/png', 'image/gif'),
@@ -49,6 +49,7 @@ class News extends CActiveRecord
     {
         return array(
             'id' => 'ID',
+            'category' => Yii::t('adminModule.app','Категория'),
             'name' => Yii::t('adminModule.app','Название'),
             'alias' => Yii::t('adminModule.app','Алиас'),
             'media' => Yii::t('adminModule.app','Медиа контент'),

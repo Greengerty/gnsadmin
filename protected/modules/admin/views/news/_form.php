@@ -13,7 +13,17 @@
         'enctype' => 'multipart/form-data',
         'enableAjaxValidation'=>false,
     ),	
-)); ?>		
+)); ?>	
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'category', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo CHtml::dropDownList('News[category]', $model->category, CHtml::listData(NewsCategory::model()->findAll(), 'id', 'name'), 
+                           array('class'=>'form-control m-bot15'));
+                ?>
+                <p><?php echo $form->error($model,'category',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>  
+
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'name', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
 			<div class="col-lg-10">

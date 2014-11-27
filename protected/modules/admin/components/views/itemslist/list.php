@@ -14,6 +14,15 @@
 		{
 			echo '<th>' . $parametrs['model']->attributeLabels()[$column] . '</th>';
 		}
+
+		/* join column names */
+		if (isset($parametrs['joinColumns']))
+		{
+			foreach ($parametrs['joinColumns'] as $column => $model)
+			{
+				echo '<th>' . $parametrs['model']->attributeLabels()[$column] . '</th>';
+			}
+		}
 		?>
 			<th style="width:120px">Вкл / Выкл</th>
 			<th style="width:100px; text-align:center">Опции</th>
@@ -21,7 +30,7 @@
 		</thead>
 		<tbody>
 			<?php
-			foreach ($parametrs['items']->getData() as $item){
+			foreach ($parametrs['items']->getData() as $item) {
 				echo '<tr class="">';
 				/* column data */
 				foreach ($parametrs['columns'] as $column)
@@ -40,6 +49,18 @@
 					else
 						echo '<td>' . $item->attributes[$column] . '</td>';
 				}
+				/* column data end */
+
+				/* join column data */
+				if (isset($parametrs['joinColumns']))
+				{				
+					foreach ($parametrs['joinColumns'] as $column => $model)
+					{									/* model name */                       /* join field */    /* needed field */
+						$joinArray = CHtml::listData($model['model']::model()->findAll(), $model['joinField'], $model['neededField']);
+						echo '<td>' . $joinArray[$item->attributes[$column]] . '</td>';
+					}
+				}
+				/* join column data end */
 
 				$status = 'no-active';
 				if(isset($item->attributes['status']) && $item->attributes['status'] == 1)
