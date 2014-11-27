@@ -30,23 +30,16 @@ return array(
 	        'visible' => true,
 	        'parent' => array(
 				    0 => array(
-				        'name' => 'Новости',
+				        'name' => 'Посты',
 				        'icon' => 'bullhorn',
 				        'url' => 'news',
 				        'auth' => 'user',
 				        'visible' => true,
 				    ),
 				    10 => array(
-				        'name' => 'Анонсы',
+				        'name' => 'Категории постов',
 				        'icon' => 'font',
-				        'url' => '#',
-				        'auth' => 'user',
-				        'visible' => true,
-				    ),
-				    20 => array(
-				        'name' => 'Прес-релизы',
-				        'icon' => 'file-text',
-				        'url' => '#',
+				        'url' => 'newscategory',
 				        'auth' => 'user',
 				        'visible' => true,
 				    ),

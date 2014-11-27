@@ -17,14 +17,14 @@ class News extends CActiveRecord
         // will receive user inputs.
         return array(
             array('name, alias', 'required'),
-            array('name, alias', 'length', 'max'=>255),
-            array('status, body, tags, alias, sdate', 'safe'),
+            array('name, alias, author', 'length', 'max'=>255),
+            array('status, body, tags, alias, sdate, popular, media, intro', 'safe'),
             array('img', 'imageValidate',
                     'types'=>array('jpg', 'jpeg', 'gif', 'png'), 
                     'mimeTypes' => array('image/jpeg', 'image/png', 'image/gif'),
                     'maxWidth'=>800,
                     'maxHeight'=>800,
-                    'postFieldName'=>'image', // Form field name
+                    'postFieldName'=>'image', // Form field
                  ),
             // The following rule is used by search().
             array('id, name, tags, alias', 'safe', 'on'=>'search'),
@@ -51,11 +51,16 @@ class News extends CActiveRecord
             'id' => 'ID',
             'name' => Yii::t('adminModule.app','Название'),
             'alias' => Yii::t('adminModule.app','Алиас'),
-            'body' => Yii::t('adminModule.app','Информация'),
+            'media' => Yii::t('adminModule.app','Медиа контент'),
+            'intro' => Yii::t('adminModule.app','Интро'),
+            'body' => Yii::t('adminModule.app','Текст'),
             'sdate' => Yii::t('adminModule.app','Дата'),
             'img' => Yii::t('adminModule.app','Изображение'),
             'tags' => Yii::t('adminModule.app','Теги'),
+            'author' => Yii::t('adminModule.app','Автор'),
+            'popular' => Yii::t('adminModule.app','Популярно'),
             'status' => Yii::t('adminModule.app','Вкл.'),
+
         );
     }
 
@@ -136,6 +141,6 @@ class News extends CActiveRecord
 
     // protected function beforeSave() 
     // {
-    //     $this->delOldImg();
+    //     return parent::beforeSave();
     // }
 }

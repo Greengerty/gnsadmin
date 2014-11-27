@@ -1,4 +1,16 @@
 <?php
+/**
+* 
+* Functions listed below are described in AdminController class
+* public function filters()
+* public function actionIndex();
+* public function actionCreate()
+* public function actionUpdate($id)
+* public function actionDelete($id)
+* public function actionOnoff()
+* protected function loadModel($id)
+*
+*/
 class TeachersController extends AdminController
 {
 	protected $modelName = 'Teachers';
@@ -11,9 +23,11 @@ class TeachersController extends AdminController
 		// http://wideimage.sourceforge.net/examples/crop/ - documentation/examples
 		Yii::import("application.modules.".strtolower(Yii::app()->controller->module->id ).'.components.wideimage.WideImage', true);
 
-		if ($_POST['action'] == 'crop' && is_file(Yii::getPathOfAlias('webroot').'/'.$_POST['src'])) {
+		if ($_POST['action'] == 'crop' && is_file(Yii::getPathOfAlias('webroot').'/'.$_POST['src'])) 
+		{
 			// check image in his module uploads
-			if(strpos($_POST['src'], '/'.strtolower($this->modelName).'/') !== false){
+			if (strpos($_POST['src'], '/'.strtolower($this->modelName).'/') !== false)
+			{
 				$image = WideImage::load(Yii::getPathOfAlias('webroot').'/'.$_POST['src']);
 				$cropped = $image->crop($_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']);
 				$cropped->saveToFile(Yii::getPathOfAlias('webroot').'/'.$_POST['src']);

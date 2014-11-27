@@ -45,7 +45,7 @@ class m141112_112242_install_admin_module extends CDbMigration
 			CREATE TABLE IF NOT EXISTS `gns_teachers` (
 			`id` int(11) NOT NULL,
 			  `name` varchar(255) NOT NULL,
-			  `body` text,
+			  `body` text NOT NULL,
 			  `img` varchar(255) NOT NULL,
 			  `position` varchar(255) NOT NULL,
 			  `tags` varchar(255) NOT NULL,

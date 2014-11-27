@@ -44,6 +44,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'intro', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textArea($model,'intro',array('class'=>'form-control')); ?>                
+                <p><?php echo $form->error($model,'intro',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>  
+
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'body', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
 			<div class="col-lg-10">
@@ -88,6 +96,33 @@
                 <p><?php echo $form->error($model,'img',array('class'=>'text-danger')); ?></p>
             </div>
         </div>	        
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'media', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textArea($model,'media',array('class'=>'form-control')); ?>                
+                <p><?php echo $form->error($model,'media',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>  
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'author', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'author',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Автор'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'author',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-lg-2 col-sm-2 control-label required" ></label>
+            <div class="col-lg-10">
+                <?php echo $form->checkBox($model,'popular', array('class'=>'iCheck-helper')); ?>
+                &nbsp;&nbsp;<?=Yii::t('adminModule.app','Популярно')?>
+                <p><?php echo $form->error($model,'popular',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
 
 		<div class="form-group">
 		<label class="col-lg-2 col-sm-2 control-label required" ></label>

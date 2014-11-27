@@ -29,7 +29,8 @@ class AdminController extends CController
 		$this->redirect('/' . Yii::app()->controller->module->id . '/');
 	}
 
-	public function accessError(){
+	public function accessError()
+	{
 		$this->render('/layouts/access_error');
 		exit;
 	}

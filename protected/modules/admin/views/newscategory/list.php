@@ -1,7 +1,7 @@
 <div class="col-lg-12">
     <div class="panel">
         <div class="panel-heading">
-            <?=Yii::t('adminModule.app','Посты')?>
+            <?=Yii::t('adminModule.app','Категории постов')?>
             <div class="btn-group pull-right">
 					<button type="button" class="btn btn-info btn-xs" 
 						onclick="javascript:location.href='<?php echo Yii::app()->params['adminUrl'] . '/' . $this->id . '/create/'?>'">
@@ -15,10 +15,7 @@
 		'items' => $model->search(), 
 		'columns'=>array(
 			'id',
-			'img',
 			'name',
-			'sdate',
-			'tags',
 		),
 		'model'=>$model,	
 	));

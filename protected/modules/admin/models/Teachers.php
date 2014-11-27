@@ -135,6 +135,6 @@ class Teachers extends CActiveRecord
 
     // protected function beforeSave() 
     // {
-    //     $this->delOldImg();
+    //     return parent::beforeSave();
     // }
 }

@@ -3,7 +3,7 @@
 	<div class="col-sm-12">
 		<section class="panel">
 			<header class="panel-heading">
-				<?=Yii::t('adminModule.app','Посты')?> - 
+				<?=Yii::t('adminModule.app','Категории постов')?> - 
 				<?php echo ($model->isNewRecord ? Yii::t('adminModule.app','Добавление') : Yii::t('adminModule.app','Правка')) ?>
 				<span class="tools pull-right">
 					<button type="button" class="btn btn-info btn-xs" 
@@ -14,7 +14,7 @@
 			</header>
 			<div class="panel-body">
 				<div class="position-center">
-					<?php $this->renderPartial('_form', array('model'=>$model, 'size'=>$size)); ?>
+					<?php $this->renderPartial('_form', array('model'=>$model)); ?>
 				</div>
 			</div>
 		</section>
