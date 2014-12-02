@@ -41,7 +41,6 @@ class NewsCategory extends CActiveRecord
             'id' => 'ID',
             'name' => Yii::t('adminModule.app','Название'),
             'status' => Yii::t('adminModule.app','Вкл.'),
-
         );
     }
 
@@ -59,15 +58,38 @@ class NewsCategory extends CActiveRecord
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
+        /* SORT PART */
+        $sort = new CSort;
+        $sort->defaultOrder = array(
+            'id'=>CSort::SORT_DESC,
+        );        
 
-        $criteria=new CDbCriteria;
+        /* SEARCH PART */
+        $searchColumns = array(
+            'id',
+            'name',
+        );
 
-        $criteria->compare('id',$this->id);
-        $criteria->compare('name',$this->name,true);
+        $criteria = new CDbCriteria;
+        if(isset($_GET['search'])){
+            $criteria->condition = '';
+            $i = 0;
+            foreach ($searchColumns as $column)
+            {
+                if($i == 0)
+                    $criteria->condition = $column.' LIKE :'.$column.' ';                
+                else
+                    $criteria->condition .= ' OR '.$column.' LIKE :'.$column.' ';                
+
+                $criteria->params[':'.$column] = '%'.$_GET['search'].'%';
+                $i++;
+            }
+        }
 
         return new CActiveDataProvider($this, array(
+            'pagination'=>array('pageSize'=>10),
             'criteria'=>$criteria,
+            'sort'=>$sort,
         ));
     }
 

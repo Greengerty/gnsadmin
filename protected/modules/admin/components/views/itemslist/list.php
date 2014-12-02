@@ -81,24 +81,32 @@
 <?php 
 /* PAGER */
 $pages = ceil($parametrs['items']->pagination->itemCount / $parametrs['items']->pagination->pageSize); //Pager - count of pages
-if($pages > 1){
+if($pages > 1)
+{
 	$class='';
 	if($parametrs['items']->pagination->currentPage == 0)
 		$class='active';
+
+	/* SEARCH */
+	$search = '?';
+	if (isset($_GET['search']))
+	{
+		$search .= 'search='.$_GET['search'].'&';
+	}
 ?>
 <div>
 	<ul class="pagination pagination-sm pull-right">
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/">«</a></li>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/">1</a></li>
+		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>">«</a></li>
+		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>">1</a></li>
 	<?php
 		for($i=2; $i <= $pages; $i++){
 			$class='';
 			if($i == $parametrs['items']->pagination->currentPage + 1)
 				$class='active';
 	?>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?page=<?=$i?>"><?=$i?></a></li>
+		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>page=<?=$i?>"><?=$i?></a></li>
 	<?php } ?>
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?page=<?=$pages?>">»</a></li>
+		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>page=<?=$pages?>">»</a></li>
 	</ul>
 </div>
 <?php } ?>

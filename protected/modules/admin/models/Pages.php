@@ -71,10 +71,6 @@ class Pages extends CActiveRecord
 
         $criteria=new CDbCriteria;
 
-        $criteria->compare('id',$this->id);
-        $criteria->compare('name',$this->name,true);
-        $criteria->compare('url',$this->url,true);
-
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
         ));
