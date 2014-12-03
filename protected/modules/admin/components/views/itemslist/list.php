@@ -1,7 +1,9 @@
 
 <?php
-	if(isset($_GET['page']))
+	if(isset($_GET['page']) && $_GET['page'] > 1)
 		$parametrs['items']->pagination->currentPage = (int)$_GET['page'];
+	// if($parametrs['items']->pagination->currentPage == 0)
+	// 	$parametrs['items']->pagination->currentPage = 1;
 ?>
 <div class="adv-table editable-table ">
 	<div class="space15"></div>
@@ -12,7 +14,24 @@
 		/* column names */
 		foreach ($parametrs['columns'] as $column)
 		{
-			echo '<th>' . $parametrs['model']->attributeLabels()[$column] . '</th>';
+			/* SEARCH */
+			$search = '';
+			if (isset($_GET['search']))
+			{
+				$search .= 'search='.$_GET['search'].'&';
+			}
+
+			/* SORT */
+			$sort = 'sort='.$column.'&';
+			$howsort = 'howsort=asc&';
+			if (isset($_GET['howsort']))
+			{
+				if($_GET['howsort'] == 'asc')
+					$howsort = 'howsort=desc&';
+				else
+					$howsort = 'howsort=asc&';
+			}		
+			echo '<th><a href="?'.$search.$sort.$howsort.'">' . $parametrs['model']->attributeLabels()[$column] . '</a></th>';
 		}
 
 		/* join column names */
@@ -88,25 +107,35 @@ if($pages > 1)
 		$class='active';
 
 	/* SEARCH */
-	$search = '?';
+	$search = '';
 	if (isset($_GET['search']))
 	{
 		$search .= 'search='.$_GET['search'].'&';
 	}
+
+	/* SORT */
+	$sort = '';
+	$howsort = '';
+	if (isset($_GET['sort']))
+	{
+		$sort .= 'sort='.$_GET['sort'].'&';
+		$howsort .= 'howsort='.$_GET['howsort'].'&';
+	}
 ?>
 <div>
 	<ul class="pagination pagination-sm pull-right">
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>">«</a></li>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>">1</a></li>
+		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>">«</a></li>
+		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>">1</a></li>
 	<?php
-		for($i=2; $i <= $pages; $i++){
+		for ($i=2; $i <= $pages; $i++)
+		{
 			$class='';
-			if($i == $parametrs['items']->pagination->currentPage + 1)
+			if ($i == $parametrs['items']->pagination->currentPage)
 				$class='active';
 	?>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>page=<?=$i?>"><?=$i?></a></li>
+		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>page=<?=$i?>"><?=$i?></a></li>
 	<?php } ?>
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/<?=$search?>page=<?=$pages?>">»</a></li>
+		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>page=<?=$pages?>">»</a></li>
 	</ul>
 </div>
 <?php } ?>

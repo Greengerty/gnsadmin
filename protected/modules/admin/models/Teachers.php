@@ -72,12 +72,6 @@ class Teachers extends CActiveRecord
      */
     public function search()
     {
-        /* SORT PART */
-        $sort = new CSort;
-        $sort->defaultOrder = array(
-            'id'=>CSort::SORT_DESC,
-        );        
-
         /* SEARCH PART */
         $searchColumns = array(
             'id',
@@ -87,7 +81,8 @@ class Teachers extends CActiveRecord
         );
 
         $criteria = new CDbCriteria;
-        if(isset($_GET['search'])){
+        if (isset($_GET['search']))
+        {
             $criteria->condition = '';
             $i = 0;
             foreach ($searchColumns as $column)
@@ -102,10 +97,19 @@ class Teachers extends CActiveRecord
             }
         }
 
+        /* SORT PART */
+        $criteria->order = "id DESC"; //defalut order
+        if (isset($_GET['sort']))
+        {        
+            if(isset($_GET['howsort']) && $_GET['howsort'] == 'asc')
+                $criteria->order = $_GET['sort'].' ASC';
+            else
+                $criteria->order = $_GET['sort'].' DESC';
+        }
+
         return new CActiveDataProvider($this, array(
             'pagination'=>array('pageSize'=>10),
             'criteria'=>$criteria,
-            'sort'=>$sort,
         ));
     }    
 
