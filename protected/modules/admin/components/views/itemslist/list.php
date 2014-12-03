@@ -1,10 +1,58 @@
 
 <?php
-	if(isset($_GET['page']) && $_GET['page'] > 1)
+	/* PAGER */
+	$pager = '';
+
+	if(isset($_GET['page']))
 		$parametrs['items']->pagination->currentPage = (int)$_GET['page'];
-	// if($parametrs['items']->pagination->currentPage == 0)
-	// 	$parametrs['items']->pagination->currentPage = 1;
+
+	$parametrs['items']->getData();
+	$pages = ceil($parametrs['items']->pagination->itemCount / $parametrs['items']->pagination->pageSize); //Pager - count of pages
+
+	if($pages > 1)
+	{
+		$class='';
+		if($parametrs['items']->pagination->currentPage == 0)
+			$class='active';
+
+		/* SEARCH */
+		$search = '';
+		if (isset($_GET['search']))
+		{
+			$search .= 'search='.$_GET['search'].'&';
+		}
+
+		/* SORT */
+		$sort = '';
+		$howsort = '';
+		if (isset($_GET['sort']))
+		{
+			$sort .= 'sort='.$_GET['sort'].'&';
+			$howsort .= 'howsort='.$_GET['howsort'].'&';
+		}
+
+		/* PAGER BODY */
+		$pager = '
+					<ul class="pagination pagination-sm pull-right">
+						<li><a href="'.Yii::app()->params['adminUrl'].'/'.strtolower($parametrs['items']->id).'/?'.$search.$sort.$howsort.'">«</a></li>
+		';
+		for ($i=0; $i < $pages; $i++)
+		{
+			$class='';
+			if ($i == $parametrs['items']->pagination->currentPage)
+				$class='active';
+
+			$pager .= '<li class="'.$class.'"><a href="'.Yii::app()->params['adminUrl'].'/'.strtolower($parametrs['items']->id).'/?'.$search.$sort.$howsort.'page='.$i.'">'.($i+1).'</a></li>';
+		} 
+		$pager .= '<li><a href="'.Yii::app()->params['adminUrl'].'/'.strtolower($parametrs['items']->id).'/?'.$search.$sort.$howsort.'page='.($pages-1).'">»</a></li>
+					</ul>
+		';
+
+		echo $pager;
+	}
+	/* PAGER END */
 ?>
+
 <div class="adv-table editable-table ">
 	<div class="space15"></div>
 	<table class="table table-striped table-hover table-bordered" id="editable-sample">
@@ -43,7 +91,7 @@
 			}
 		}
 		?>
-			<th style="width:120px">Вкл / Выкл</th>
+			<th style="width:120px"><a href="?<?=$search?>sort=status&<?=$howsort?>">Вкл / Выкл</a></th>
 			<th style="width:100px; text-align:center">Опции</th>
 		</tr>
 		</thead>
@@ -98,44 +146,5 @@
 	</table>
 </div>
 <?php 
-/* PAGER */
-$pages = ceil($parametrs['items']->pagination->itemCount / $parametrs['items']->pagination->pageSize); //Pager - count of pages
-if($pages > 1)
-{
-	$class='';
-	if($parametrs['items']->pagination->currentPage == 0)
-		$class='active';
-
-	/* SEARCH */
-	$search = '';
-	if (isset($_GET['search']))
-	{
-		$search .= 'search='.$_GET['search'].'&';
-	}
-
-	/* SORT */
-	$sort = '';
-	$howsort = '';
-	if (isset($_GET['sort']))
-	{
-		$sort .= 'sort='.$_GET['sort'].'&';
-		$howsort .= 'howsort='.$_GET['howsort'].'&';
-	}
+	echo $pager;
 ?>
-<div>
-	<ul class="pagination pagination-sm pull-right">
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>">«</a></li>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>">1</a></li>
-	<?php
-		for ($i=2; $i <= $pages; $i++)
-		{
-			$class='';
-			if ($i == $parametrs['items']->pagination->currentPage)
-				$class='active';
-	?>
-		<li class="<?=$class?>"><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>page=<?=$i?>"><?=$i?></a></li>
-	<?php } ?>
-		<li><a href="<?=Yii::app()->params['adminUrl']?>/<?=strtolower($parametrs['items']->id)?>/?<?=$search?><?=$sort?><?=$howsort?>page=<?=$pages?>">»</a></li>
-	</ul>
-</div>
-<?php } ?>
