@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/themes/admin/js/jquery-tags-input/jquery.tagsinput.css">
 <script src="/themes/admin/js/jquery-tags-input/jquery.tagsinput.js"></script>
-<script src="/themes/admin/js/advanced-form.js"></script>
 <script src="/themes/admin/js/jcrop/js/jquery.Jcrop.min.js"></script>
 <script src="/themes/admin/js/imageCropCustom.js"></script> <!-- my custom script -->
 <link rel="stylesheet" href="/themes/admin/js/jcrop/css/jquery.Jcrop.css" type="text/css" />
@@ -126,22 +125,33 @@
         </div>
 
         <div class="form-group">
-        <label class="col-lg-2 col-sm-2 control-label required" ></label>
-            <div class="col-lg-10">
-                <?php echo $form->checkBox($model,'popular', array('class'=>'iCheck-helper')); ?>
-                &nbsp;&nbsp;<?=Yii::t('adminModule.app','Популярно')?>
-                <p><?php echo $form->error($model,'popular',array('class'=>'text-danger')); ?></p>
+            <label class="col-lg-2 col-sm-2 control-label required" ></label>
+            <div class="col-lg-10 toggle-heading" style="height:23px">
+            <?php echo $form->checkBox($model,'popular', 
+                array('class'=>'switch-small', 
+                      'data-on'=>"success", 
+                      'data-off'=>"danger", 
+                      'data-on-label'=>Yii::t('adminModule.app','Да'),  
+                      'data-off-label'=>Yii::t('adminModule.app','Нет')
+                    )); 
+            ?>
+            &nbsp;&nbsp;<?=Yii::t('adminModule.app','Популярно')?>
+            </div>
+        </div>        
+
+        <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label required" ></label>
+            <div class="col-lg-10 toggle-heading" style="height:23px">
+            <?php echo $form->checkBox($model,'status', 
+                array('class'=>'switch-small', 
+                      'data-on'=>"success", 
+                      'data-off'=>"danger", 
+                      'data-on-label'=>Yii::t('adminModule.app','Вкл'),  
+                      'data-off-label'=>Yii::t('adminModule.app','Выкл')
+                    )); 
+            ?>
             </div>
         </div>
-
-		<div class="form-group">
-		<label class="col-lg-2 col-sm-2 control-label required" ></label>
-			<div class="col-lg-10">
-				<?php echo $form->checkBox($model,'status', array('class'=>'iCheck-helper')); ?>
-				&nbsp;&nbsp;<?=Yii::t('adminModule.app','Вкл.')?>
-				<p><?php echo $form->error($model,'status',array('class'=>'text-danger')); ?></p>
-			</div>
-		</div>
 
 		<div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">

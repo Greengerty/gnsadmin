@@ -12,23 +12,73 @@
         'enableAjaxValidation'=>false,
     ),	
 )); ?>		
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'articul', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'articul',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Код курса'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'articul',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'name', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
 			<div class="col-lg-10">
                 <?php echo $form->textField($model,'name',
-                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Имя'), 'maxlength'=>255)
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Название'), 'maxlength'=>255)
                 );?>				
 				<p><?php echo $form->error($model,'name',array('class'=>'text-danger')); ?></p>
 			</div>
 		</div>
 
         <div class="form-group">
-            <?php echo $form->labelEx($model,'position', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <?php echo $form->labelEx($model,'alias', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
             <div class="col-lg-10">
-                <?php echo $form->textField($model,'position',
-                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Должность'), 'maxlength'=>255)
+                <?php echo $form->textField($model,'alias',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Алиас'), 'maxlength'=>255)
                 );?>                
-                <p><?php echo $form->error($model,'position',array('class'=>'text-danger')); ?></p>
+                <p><?php echo $form->error($model,'alias',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'price', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'price',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Цена'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'price',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'exam_id', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'exam_id',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Подготовка к экзаменам'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'exam_id',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'duration', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'duration',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Длительность'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'duration',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'skill_level', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo CHtml::dropDownList('Courses[skill_level]', $model->skill_level, $model->levels, 
+                array('class'=>'form-control m-bot15')
+                );?>
+                <p><?php echo $form->error($model,'skill_level',array('class'=>'text-danger')); ?></p>
             </div>
         </div>
 
@@ -39,6 +89,26 @@
 				<p><?php echo $form->error($model,'body',array('class'=>'text-danger')); ?></p>
 			</div>
 		</div>		
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'expert', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo $form->textField($model,'expert',
+                      array('class'=>'form-control', 'placeholder'=>Yii::t('adminModule.app','Преподаватель'), 'maxlength'=>255)
+                );?>                
+                <p><?php echo $form->error($model,'expert',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'format', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
+            <div class="col-lg-10">
+                <?php echo CHtml::dropDownList('Courses[format]', $model->format, $model->formats, 
+                array('class'=>'form-control m-bot15')
+                );?>
+                <p><?php echo $form->error($model,'format',array('class'=>'text-danger')); ?></p>
+            </div>
+        </div>
 
         <div class="form-group">
             <?php echo $form->labelEx($model,'tags', array('class'=>'col-lg-2 col-sm-2 control-label')); ?>
@@ -99,6 +169,15 @@
 <?php $this->endWidget(); ?>
 
 <script>
-    TagsField = 'Teachers_tags';
-    CKEDITOR.replace( 'Teachers_body' );
+    TagsField = 'Courses_tags';
+    CKEDITOR.replace( 'Courses_body' );
+
+    $(document).ready(function()
+    {
+        $("#Courses_alias").click(function()
+        {
+            if($("#Courses_alias").val() == '')
+                $("#Courses_alias").val( urlRusLat($("#Courses_name").val()) );
+        });
+    });    
 </script>

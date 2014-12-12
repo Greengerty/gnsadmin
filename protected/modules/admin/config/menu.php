@@ -23,6 +23,36 @@ return array(
 	        'visible' => true,
 	    ),	    
 	    30 => array(
+	        'name' => 'Обучение',
+	        'icon' => 'bell-o',
+	        'url' => '#',
+	        'auth' => 'user',
+	        'visible' => true,
+	        'parent' => array(
+				    0 => array(
+				        'name' => 'Курсы',
+				        'icon' => 'book',
+				        'url' => 'courses',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+				    10 => array(
+				        'name' => 'Технологии',
+				        'icon' => 'gears',
+				        'url' => 'technology',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+				    20 => array(
+				        'name' => 'Направления',
+				        'icon' => 'arrows',
+				        'url' => 'path',
+				        'auth' => 'user',
+				        'visible' => true,
+				    ),
+	        )
+	    ),	    
+	    40 => array(
 	        'name' => 'Блог',
 	        'icon' => 'edit',
 	        'url' => '#',

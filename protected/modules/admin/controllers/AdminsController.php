@@ -93,5 +93,5 @@ class AdminsController extends AdminController
 
 		$this->render('edit', array('model'=>$model));
 	}
-	
+
 }

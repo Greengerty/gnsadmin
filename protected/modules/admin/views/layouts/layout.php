@@ -9,6 +9,7 @@
 	<link href="/themes/admin/css/bootstrap-reset.css" rel="stylesheet">
 	<link href="/themes/admin/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 	<link href="/themes/admin/css/clndr.css" rel="stylesheet">
+	<link href="/themes/admin/css/bootstrap-switch.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="/themes/admin/css/style.css" rel="stylesheet">
 	<link href="/themes/admin/css/custom.css" rel="stylesheet">
@@ -20,6 +21,9 @@
 	<!--common script init for all pages-->
 	<script src="/themes/admin/js/scripts.js"></script>
 	<script src="/themes/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="/themes/admin/js/advanced-form.js"></script>
+	<script src="/themes/admin/js/bootstrap-switch.js"></script>
+	<script src="/themes/admin/js/toggle-init.js"></script>	
 	
 	<!-- js & css for tree styles -->
 	<link rel="stylesheet" type="text/css" href="/themes/admin/js/fuelux/css/tree-style.css">

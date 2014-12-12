@@ -97,6 +97,18 @@
 		</thead>
 		<tbody>
 			<?php
+			/* join column data */
+			/* done this before output cycle for sql query optimization */
+			if (isset($parametrs['joinColumns']))
+			{				
+				$joinArray = array();
+				foreach ($parametrs['joinColumns'] as $column => $model)
+				{									/* model name */                       /* join field */    /* needed field */
+					$joinArray[$model['model']] = CHtml::listData($model['model']::model()->findAll(), $model['joinField'], $model['neededField']);
+				}
+			}
+			/* join column data end */
+
 			foreach ($parametrs['items']->getData() as $item) {
 				echo '<tr class="">';
 				/* column data */
@@ -118,16 +130,13 @@
 				}
 				/* column data end */
 
-				/* join column data */
+				/* join column data output */
 				if (isset($parametrs['joinColumns']))
 				{				
 					foreach ($parametrs['joinColumns'] as $column => $model)
-					{									/* model name */                       /* join field */    /* needed field */
-						$joinArray = CHtml::listData($model['model']::model()->findAll(), $model['joinField'], $model['neededField']);
-						echo '<td>' . $joinArray[$item->attributes[$column]] . '</td>';
-					}
+						echo '<td>' . $joinArray[$model['model']][$item->attributes[$column]] . '</td>';
 				}
-				/* join column data end */
+				/* join column data output end */
 
 				$status = 'no-active';
 				if(isset($item->attributes['status']) && $item->attributes['status'] == 1)

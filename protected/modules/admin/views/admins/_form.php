@@ -45,11 +45,16 @@
 		</div>
 
 		<div class="form-group">
-		<label class="col-lg-2 col-sm-2 control-label required" ></label>
-			<div class="col-lg-10">
-				<?php echo $form->checkBox($model,'status', array('class'=>'iCheck-helper')); ?>
-				&nbsp;&nbsp;<?=Yii::t('adminModule.app','Вкл.')?>
-				<p><?php echo $form->error($model,'status',array('class'=>'text-danger')); ?></p>
+			<label class="col-lg-2 col-sm-2 control-label required" ></label>
+			<div class="col-lg-10 toggle-heading" style="height:23px">
+			<?php echo $form->checkBox($model,'status', 
+				array('class'=>'switch-small', 
+					  'data-on'=>"success", 
+					  'data-off'=>"danger", 
+					  'data-on-label'=>Yii::t('adminModule.app','Вкл'),  
+					  'data-off-label'=>Yii::t('adminModule.app','Выкл')
+					)); 
+			?>
 			</div>
 		</div>
 
